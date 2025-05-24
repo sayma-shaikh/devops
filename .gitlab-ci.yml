@@ -1,0 +1,25 @@
+stages:
+  - build
+  - test
+
+before_script:
+  - apt-get update && apt-get install -y openjdk-17-jdk
+
+build:
+  stage: build
+  script:
+    - javac JavaDemo.java
+    - ls -l
+  artifacts:
+    paths:
+      - JavaDemo.class
+  only:
+    - main
+
+test:
+  stage: test
+  script:
+    - ls -l
+    - java JavaDemo
+  only:
+    - main
